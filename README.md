@@ -64,120 +64,187 @@ Run the **full-precision model locally** using Hugging Face `transformers`.
 - **16 GB RAM minimum** (CPU works, GPU optional)
 - Disk space: **~14 GB**
 
+
+
 ---
 
-### 🔧 Installation
+> ## 🔧 Installation
+>
+> ```bash
+> pip install transformers torch accelerate sentencepiece
+> ```
 
-```bash
-pip install transformers torch accelerate sentencepiece
-▶️ Run the Model (Interactive – Terminal)
-python3 -c "from transformers import pipeline; p=pipeline('text-generation','yamraj047/nepal-legal-mistral-7b'); print(p(input('Q: '), max_new_tokens=300)[0]['generated_text'])" ```
+---
 
-Example:
-Q: Explain Article 20 of the Constitution of Nepal
-Press Enter to receive the answer.
-⚠️ First run will download ~13.5 GB and may be slow on CPU systems.
+> ## ▶️ Run the Model (Interactive – Terminal)
+>
+> ```bash
+> python3 -c "from transformers import pipeline; p=pipeline('text-generation','yamraj047/nepal-legal-mistral-7b'); print(p(input('Q: '), max_new_tokens=300)[0]['generated_text'])"
+> ```
+>
+> **Example:**
+> ```text
+> Q: Explain Article 20 of the Constitution of Nepal
+> ```
+>
+> Press **Enter** to receive the answer.
+>
+> ⚠️ First run will download ~13.5 GB and may be slow on CPU systems.
+
 ---
-💡 Low-RAM Alternative (Recommended for Laptops)
-If your system has limited memory, use the GGUF quantized model:
-Size: 4.07 GB
-Backend: llama.cpp
-Runs efficiently on laptops and low-resource machines
-Model link:
-https://huggingface.co/yamraj047/nepal-legal-mistral-7b-GGUF
-🧠 Why This Matters
-Most legal chatbots:
-❌ Are trained on generic web text
-❌ Ignore legal hierarchy
-❌ Cannot trace answers back to law
-This system:
-✅ Preserves Nepal’s legal structure
-✅ Grounds responses in exact legal sections
-✅ Reduces hallucination via chunk-level supervision
-✅ Runs on consumer hardware
+
+> ## 💡 Low-RAM Alternative (Recommended for Laptops)
+>
+> If your system has limited memory, use the **GGUF quantized model**:
+>
+> - **Size:** 4.07 GB  
+> - **Backend:** llama.cpp  
+> - **Performance:** Runs efficiently on laptops and low-resource machines
+>
+> **Model link:**  
+> https://huggingface.co/yamraj047/nepal-legal-mistral-7b-GGUF
+
 ---
-🗂️ Repository Structure
-.
-├── pdf-to-text/
-│   ├── pdf_to_text.py              # Faithful PDF → text extraction
-│   ├── penal-english.pdf           # Official legal source
-│   └── penal_code_raw.txt          # Clean extracted text
-│
-├── chunking/
-│   ├── legal_chunking.py           # Hierarchy + chunk ID generation
-│   └── penal_code_chunks.json
-│
-├── instruction-dataset/
-│   └── npc_instruction_dataset.json
-│
-├── training/
-│   └── mistral_finetuning.ipynb    # Instruction fine-tuning
-│
-└── README.md
+
+> ## 🧠 Why This Matters
+>
+> **Most legal chatbots:**
+> - ❌ Are trained on generic web text  
+> - ❌ Ignore legal hierarchy  
+> - ❌ Cannot trace answers back to law
+>
+> **This system:**
+> - ✅ Preserves Nepal’s legal structure  
+> - ✅ Grounds responses in exact legal sections  
+> - ✅ Reduces hallucination via chunk-level supervision  
+> - ✅ Runs on consumer hardware
+
 ---
-🧱 Stage 1 — PDF → Clean Text
-Goal: Extract the law exactly as published.
-No chunking
-No summarization
-No interpretation
-This ensures legal authenticity.
+
+> ## 🗂️ Repository Structure
+>
+> ```text
+> .
+> ├── pdf-to-text/
+> │   ├── pdf_to_text.py              # Faithful PDF → text extraction
+> │   ├── penal-english.pdf           # Official legal source
+> │   └── penal_code_raw.txt          # Clean extracted text
+> │
+> ├── chunking/
+> │   ├── legal_chunking.py           # Hierarchy + chunk ID generation
+> │   └── penal_code_chunks.json
+> │
+> ├── instruction-dataset/
+> │   └── npc_instruction_dataset.json
+> │
+> ├── training/
+> │   └── mistral_finetuning.ipynb    # Instruction fine-tuning
+> │
+> └── README.md
+> ```
+
 ---
-🧩 Stage 2 — Legal Chunking + Metadata
-Each subsection becomes a single atomic legal unit:
-{
-  "law": "National Penal Code 2017",
-  "part": "Part-1",
-  "chapter": "Chapter-1",
-  "section": 1,
-  "subsection": "(1)",
-  "chunk_id": "npc2017_p1_c1_s1_sub1"
-}
-This enables:
-Traceable answers
-Precise retrieval
-Explainable AI outputs
+
+> ## 🧱 Stage 1 — PDF → Clean Text
+>
+> **Goal:** Extract the law exactly as published.
+>
+> - No chunking  
+> - No summarization  
+> - No interpretation  
+>
+> This ensures **legal authenticity**.
+
 ---
-🧠 Stage 3 — Instruction Dataset Engineering
-Instructions are systematically generated, not random:
-Legal explanation
-Scope & applicability
-Classification questions
-Negative examples ("not mentioned in law")
-Each instruction retains full legal metadata.
+
+> ## 🧩 Stage 2 — Legal Chunking + Metadata
+>
+> Each subsection becomes a **single atomic legal unit**:
+>
+> ```json
+> {
+>   "law": "National Penal Code 2017",
+>   "part": "Part-1",
+>   "chapter": "Chapter-1",
+>   "section": 1,
+>   "subsection": "(1)",
+>   "chunk_id": "npc2017_p1_c1_s1_sub1"
+> }
+> ```
+>
+> This enables:
+> - Traceable answers  
+> - Precise retrieval  
+> - Explainable AI outputs  
+
 ---
-🔥 Stage 4 — Fine-Tuning
-Base Model: Mistral-7B
-Training Type: Instruction tuning
-Focus: Legal understanding & reasoning
-Result: a Nepal-specific legal LLM, not a generic chatbot.
+
+> ## 🧠 Stage 3 — Instruction Dataset Engineering
+>
+> Instructions are **systematically generated**, not random:
+> - Legal explanation  
+> - Scope & applicability  
+> - Classification questions  
+> - Negative examples (“not mentioned in law”)
+>
+> Each instruction retains **full legal metadata**.
+
 ---
-⚡ Stage 5 — Quantization
-Metric	Value
-Original size	13.5 GB
-Quantized size	4.07 GB
-Method	Q4_K_M
-Compatible with	llama.cpp, LM Studio
+
+> ## 🔥 Stage 4 — Fine-Tuning
+>
+> - **Base Model:** Mistral-7B  
+> - **Training Type:** Instruction tuning  
+> - **Focus:** Legal understanding & reasoning  
+>
+> **Result:** A Nepal-specific legal LLM, not a generic chatbot.
+
 ---
-🌐 Stage 6 — Deployment
-Gradio UI for public interaction
-FastAPI backend for integration
-GGUF inference for offline use
+
+> ## ⚡ Stage 5 — Quantization
+>
+> | Metric | Value |
+> |------|------|
+> | Original size | 13.5 GB |
+> | Quantized size | **4.07 GB** |
+> | Method | Q4_K_M |
+> | Compatible with | llama.cpp, LM Studio |
+
 ---
-⚠️ Legal Disclaimer
-This project is for research and educational purposes only.
-❗ Not a substitute for professional legal advice.
+
+> ## 🌐 Stage 6 — Deployment
+>
+> - Gradio UI for public interaction  
+> - FastAPI backend for integration  
+> - GGUF inference for offline use  
+
 ---
-👤 Author
-Yamraj Khadka
-Computer Engineering Undergraduate, Nepal 🇳🇵
-🤗 Hugging Face: https://huggingface.co/yamraj047
-🐙 GitHub: https://github.com/yamrajkhadka
+
+> ## ⚠️ Legal Disclaimer
+>
+> This project is for **research and educational purposes only**.
+>
+> ❗ **Not a substitute for professional legal advice.**
+
 ---
-⭐ Support the Project
-If this project helped you:
-⭐ Star the repository
-🍴 Fork it
-🧠 Build on it
-This work aims to raise the standard for Nepal-focused AI systems.
+
+> ## 👤 Author
+>
+> **Yamraj Khadka**  
+> Computer Engineering Undergraduate, Nepal 🇳🇵
+>
+> - 🤗 Hugging Face: https://huggingface.co/yamraj047  
+> - 🐙 GitHub: https://github.com/yamrajkhadka  
+
+---
+
+> ## ⭐ Support the Project
+>
+> If this project helped you:
+> - ⭐ Star the repository  
+> - 🍴 Fork it  
+> - 🧠 Build on it  
+>
+> This work aims to **raise the standard for Nepal-focused AI systems**.
 
 ---
