@@ -5,7 +5,7 @@
 ---
 ## 🏗️ System Architecture
 
-![(https://github.com/yamrajkhadka/npc2017-legal-llm/blob/main/system-archi.png)]
+(https://github.com/yamrajkhadka/npc2017-legal-llm/blob/main/system-archi.png)
 
 This diagram illustrates the complete lifecycle of the **Nepal Legal LLM**, from raw legal documents to real-world deployment.
 ___
