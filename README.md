@@ -182,12 +182,10 @@ This project is for **research and educational purposes only**.
 ## 👤 Author
 
 **Yamraj Khadka**
-Computer Engineering Undergraduate
-AI / Machine Learning / Legal NLP
-Nepal 🇳🇵
+Computer Engineering Undergraduate Nepal 🇳🇵
 
 * Hugging Face: [https://huggingface.co/yamraj047](https://huggingface.co/yamraj047)
-* GitHub: *(add link)*
+* GitHub: https://github.com/yamrajkhadka
 
 ---
 
