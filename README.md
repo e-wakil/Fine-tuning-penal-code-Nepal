@@ -40,6 +40,20 @@ This project is designed to be **auditable, reproducible, and legally faithful**
 | **Fast API Version**         | Optimized backend inference | [https://huggingface.co/spaces/yamraj047/nepal-legal-assistant-fast](https://huggingface.co/spaces/yamraj047/nepal-legal-assistant-fast) |
 | **GGUF Quantized Assistant** | Runs on low‑RAM machines    | [https://huggingface.co/spaces/yamraj047/Nepall-legal-assist](https://huggingface.co/spaces/yamraj047/Nepall-legal-assist)               |
 
+
+🚀 Run Nepal Legal Mistral-7B Locally (FP16)
+This guide shows how to run Nepal Legal Mistral-7B locally using Hugging Face transformers.
+📦 Requirements
+Python 3.9+
+At least 16 GB RAM (CPU works, GPU optional)
+Disk space: ~14 GB
+🔧 Installation
+pip install transformers torch accelerate sentencepiece
+▶️ Run the model (Interactive – Terminal)
+python3 -c "from transformers import pipeline; p=pipeline('text-generation','yamraj047/nepal-legal-mistral-7b'); print(p(input('Q: '), max_new_tokens=300)[0]['generated_text'])"
+When prompted:
+Q: Explain Article 20 of the Constitution of Nepal
+➡️ Press Enter to get the answer.
 ---
 
 ## 🤗 Models
