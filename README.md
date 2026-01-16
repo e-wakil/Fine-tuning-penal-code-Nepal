@@ -3,9 +3,10 @@
 > **An end‑to‑end, domain‑specific Large Language Model for Nepalese law**, trained on the *National Penal Code of Nepal (2017)* — from raw legal PDF to deployable, quantized AI systems.
 
 ---
+
 ## 🏗️ System Architecture
 
-(https://github.com/yamrajkhadka/npc2017-legal-llm/blob/main/system-archi.png)
+![System Architecture](https://github.com/yamrajkhadka/npc2017-legal-llm/blob/main/system-archi.png)
 
 This diagram illustrates the complete lifecycle of the **Nepal Legal LLM**, from raw legal documents to real-world deployment.
 ___
