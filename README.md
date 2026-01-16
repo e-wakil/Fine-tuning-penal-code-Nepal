@@ -39,7 +39,7 @@ This project is designed to be **auditable, reproducible, and legally faithful**
 | **Full‑Precision Assistant** | Accurate legal reasoning    | [https://huggingface.co/spaces/yamraj047/penal-legal-assistant](https://huggingface.co/spaces/yamraj047/penal-legal-assistant)           |
 | **Fast API Version**         | Optimized backend inference | [https://huggingface.co/spaces/yamraj047/nepal-legal-assistant-fast](https://huggingface.co/spaces/yamraj047/nepal-legal-assistant-fast) |
 | **GGUF Quantized Assistant** | Runs on low‑RAM machines    | [https://huggingface.co/spaces/yamraj047/Nepall-legal-assist](https://huggingface.co/spaces/yamraj047/Nepall-legal-assist)               |
-
+---
 ## 🚀 Run Nepal Legal Mistral-7B Locally (FP16)
 
 This section explains how to run **Nepal Legal Mistral-7B** locally using Hugging Face `transformers`.
@@ -49,7 +49,7 @@ This section explains how to run **Nepal Legal Mistral-7B** locally using Huggin
 - At least **16 GB RAM** (CPU works, GPU optional)
 - Disk space: **~14 GB**
 
----
+
 
 ### 🔧 Installation
 
