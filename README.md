@@ -66,7 +66,8 @@ Within **24 hours of release**, this model was adopted by the open-source commun
 ➡ Community GGUF distribution:
 https://huggingface.co/mradermacher/nepal-legal-mistral-7b-GGUF
 
-This rapid adoption validates the model’s **engineering quality, format compatibility, and real-world usability**.
+this rapid adoption validates the model's engineering quality,format compatibility, and real-world usability.
+
 ---
 
 ## 🚀 Run Nepal Legal Mistral-7B Locally (FP16)
